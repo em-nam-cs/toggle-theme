@@ -4,4 +4,24 @@
 
 body {
     color: blue;
+    background-color: blanchedalmond;
+}
+
+.icon {
+    color: white;
+    background-color: pink;
+    fill: lightblue;
+    height: 50px;
+    width: 50px;
+}
+
+.test {
+    fill: white;
+}
+
+.sun-icon {
+    fill: green;
+    background-color: pink;
+    height: 50px;
+    width: 50px;
 }
