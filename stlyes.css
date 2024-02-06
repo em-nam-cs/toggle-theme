@@ -3,25 +3,48 @@
 }
 
 body {
-    color: blue;
-    background-color: blanchedalmond;
+    --background-color: blanchedalmond;
+    --accent-color: rgb(255, 174, 66);
+    --button-text-color: white;
+    --text-color: black;
+    --transition-delay: 2s;
+
+    background-color: var(--background-color);
+    fill: var(--accent-color);
+    color: var(--text-color);
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;  /* makes the centering be entire viewheight, not height of elements (which pushes centering to top because elements don't take entire screen) */
+    margin: 0px;    /* prevent scroll bar */
+}
+
+/* styles for dark mode */
+body.dark {
+    --background-color: #333;
+    --accent-color: #d0d066;
+    --button-text-color: var(--background-color);
+    --text-color: white;
+
+
+}
+
+
+.container {
+    border: 2px solid black;
+    /* margin: 100px; */
+    /* flex-direction: row; */
+    /* align-items: center; */
 }
 
 .icon {
-    color: white;
+    /* color: white;
     background-color: pink;
-    fill: lightblue;
-    height: 50px;
-    width: 50px;
-}
-
-.test {
-    fill: white;
-}
-
-.sun-icon {
-    fill: green;
-    background-color: pink;
+    fill: lightblue; */
     height: 50px;
     width: 50px;
 }
