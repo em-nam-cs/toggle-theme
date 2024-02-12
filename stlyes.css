@@ -12,6 +12,7 @@ body {
     background-color: var(--background-color);
     fill: var(--accent-color);
     color: var(--text-color);
+    transition: var(--transition-delay);
 
 
     display: flex;
@@ -20,7 +21,7 @@ body {
     justify-content: center;
 
     height: 100vh;  /* makes the centering be entire viewheight, not height of elements (which pushes centering to top because elements don't take entire screen) */
-    margin: 0px;    /* prevent scroll bar */
+    overflow: hidden; /*prevent scroll bar */
 }
 
 /* styles for dark mode */
@@ -29,22 +30,80 @@ body.dark {
     --accent-color: #d0d066;
     --button-text-color: var(--background-color);
     --text-color: white;
-
-
-}
-
-
-.container {
-    border: 2px solid black;
-    /* margin: 100px; */
-    /* flex-direction: row; */
-    /* align-items: center; */
 }
 
 .icon {
-    /* color: white;
-    background-color: pink;
-    fill: lightblue; */
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
 }
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.theme-toggle-button {
+    background-color: var(--accent-color);
+    color: var(--button-text-color);
+    fill: var(--button-text-color);
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5em 5em;
+    border-radius: 5px;
+    border: none;
+    transition: var(--transition-delay);
+    transform: scale(1);
+}
+
+.theme-toggle-button .icon {
+    margin-right: 0.5em;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.sun-moon-container {
+    --rotation: 0;
+
+    pointer-events: none; /*prevents container from blocking btn*/
+    position: absolute;
+    top: 0;
+    height: 200vmin; /*creates circular path based on smallest screen dim */
+
+    transform: rotate(calc(var(--rotation) * 1deg)); /*include units in css so no need for str in js*/
+    transition: transform, var(--transition-delay);
+
+    display: flex;
+    justify-content: center;
+}
+
+#sun, #moon {
+    position: absolute;
+    transition: opacity, fill, var(--transition-delay);
+    fill: var(--accent-color);
+    width: 60px;
+    height: 60px;
+}
+
+#sun {
+    top: 5%;
+    opacity: 1;
+}
+
+#moon {
+    bottom: 5%;
+    opacity: 0;
+    transform: rotate(180deg);  /*keeps moon right side up*/
+}
+
+.dark #moon {
+    opacity: 1;
+}
+
+.dark #sun {
+    opacity: 0;
+}
+
