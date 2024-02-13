@@ -48,7 +48,7 @@ function toggleTheme() {
     const index = -1 * currentlyDark / 100;     //convert state to index (0 if switching to dark, -1.8 if switching to light)
 
     let delay = getComputedStyle(document.body).getPropertyValue('--animiation-transition');
-    delay = delay.replace(/\D/g,'') * 1000 * (3/4);     //convert to ms int at a fraction of given delay
+    delay = delay.replace(/\D/g,'') * 1000;     //convert to ms int at a fraction of given delay
 
 
     toggleBtnText.classList.add("fade-in-animation");
@@ -58,7 +58,7 @@ function toggleTheme() {
     
     setTimeout(() => {
          toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
-    }, delay/2);
+    }, delay/2);    //divide by 2 because that's when opacity 0 (at 50%)    //fix so pulling css var
 
    
 
