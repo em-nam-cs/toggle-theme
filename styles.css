@@ -7,8 +7,8 @@ body {
     --accent-color: rgb(255, 174, 66);
     --button-text-color: white;
     --text-color: black;
-    --transition-delay: 2s;
-    --animiation-transition: 3s;
+    --transition-delay: 1000ms;
+    --animiation-transition: 1500ms;
 
     background-color: var(--background-color);
     fill: var(--accent-color);
