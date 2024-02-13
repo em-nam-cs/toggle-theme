@@ -7,7 +7,8 @@ body {
     --accent-color: rgb(255, 174, 66);
     --button-text-color: white;
     --text-color: black;
-    --transition-delay: 2s;
+    --transition-delay: 1000ms;
+    --animiation-transition: 1500ms;
 
     background-color: var(--background-color);
     fill: var(--accent-color);
@@ -107,3 +108,22 @@ body.dark {
     opacity: 0;
 }
 
+.fade-in-animation {
+    animation-name: fade-in;
+    animation-duration: var(--animiation-transition);
+    opacity: 1;
+}
+
+@keyframes fade-in {
+    50% {opacity: 0;}
+}
+
+/* 
+
+.dark #light-text {
+    opacity: 0.2;
+}
+
+.dark #dark-text {
+    opacity: 1;
+} */
