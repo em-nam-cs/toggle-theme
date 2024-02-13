@@ -20,6 +20,10 @@ const toggleBtn = document.getElementsByClassName("theme-toggle-button")[0];
 
 toggleBtn.addEventListener("click", toggleTheme);
 
+document.addEventListener("DOMContentLoaded", () => {
+    toggleBtn.children[1].innerHTML = LIGHT_BUTTON_TEXT;
+})
+
 // currElement.innerHTML = BUTTON_TEXT[-1 * currState / 100]; //ON load put text
 
 function toggleTheme() {
