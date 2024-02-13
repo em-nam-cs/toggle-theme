@@ -19,19 +19,17 @@ function toggleTheme() {
     const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
     const index = -1 * currentlyDark / 100;     //convert state to index (0 if switching to dark, -1.8 if switching to light)
 
-    // const delay = getComputedStyle(document.body).getPropertyValue('--transition-delay');
-    // console.log(delay);
+    let delay = getComputedStyle(document.body).getPropertyValue('--transition-delay');
+    delay = delay.replace(/\D/g,'') * 1000 / 3;
 
     for (i = 0; i < toggleBtn.children.length; i++) {
         const currElement = toggleBtn.children[i]
 
         //replace text in the btn's span
         if (currElement.tagName == "SPAN") {
-            // console.log("START");
-            // setTimeout(() => {
+            setTimeout(() => {
                 currElement.innerHTML = BUTTON_TEXT.at(index);
-                // console.log("HERE");
-            // }, delay);
+            }, delay);
 
         }
     }
