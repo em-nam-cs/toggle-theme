@@ -15,7 +15,9 @@
   * 
   TODO:
   - smooth transition of button text (fade text in and then out??, use color or opacity?)
+ - include icon in the fade-in transition
 
+ - transition does not work on the first click of the button
   */
 
 const LIGHT_BUTTON_TEXT = "Swap to Dark Theme";
@@ -45,22 +47,25 @@ function toggleTheme() {
     const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
     const index = -1 * currentlyDark / 100;     //convert state to index (0 if switching to dark, -1.8 if switching to light)
 
-    let delay = getComputedStyle(document.body).getPropertyValue('--transition-delay');
-    delay = delay.replace(/\D/g,'') * 1000 / 3;     //convert to ms int at a fraction of given delay (otherwise too slow)
+    let delay = getComputedStyle(document.body).getPropertyValue('--animiation-transition');
+    delay = delay.replace(/\D/g,'') * 1000 * (3/4);     //convert to ms int at a fraction of given delay
 
 
     toggleBtnText.classList.add("fade-in-animation");
     setTimeout(() => {
         toggleBtnText.classList.remove("fade-in-animation");
-        
     }, delay);
     
+    setTimeout(() => {
+         toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
+    }, delay/2);
 
+   
 
     // //replace text in the btn's span
-    setTimeout(() => {
-        toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
-    }, delay);
+    // setTimeout(() => {
+    //     toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
+    // }, delay);
 
 
 
