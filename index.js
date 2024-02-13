@@ -14,9 +14,16 @@
 @date 02/13/2024
  */
 
-const LIGHT_BUTTON_TEXT = "Swap to Dark Theme";
-const DARK_BUTTON_TEXT = "Swap to Light Theme";
-const BUTTON_TEXT = Array(DARK_BUTTON_TEXT, LIGHT_BUTTON_TEXT);
+ /**
+  * 
+  todo:
+  - have button text based on a diction/key-value pairs so better indexing
+  */
+
+const BUTTON_TEXT = {
+    "LIGHT_TEXT": "Swap to Dark Theme",
+    "DARK_TEXT": "Swap to Light Theme"
+}
 const FULL_REVOLUTION = 360;
 
 const sunMoonContainer = document.getElementsByClassName("sun-moon-container")[0];
@@ -28,8 +35,18 @@ toggleBtn.addEventListener("click", toggleTheme);
 
 //Set toggle button text upon loading
 document.addEventListener("DOMContentLoaded", () => {
-    toggleBtnText.innerHTML = LIGHT_BUTTON_TEXT;
+    setLightTheme();
 })
+
+
+function setLightTheme() {
+    toggleBtnText.innerHTML = BUTTON_TEXT["LIGHT_TEXT"];
+}
+
+function setDarkTheme() {
+    toggleBtnText.innerHTML = BUTTON_TEXT["DARK_TEXT"];
+}
+
 
 /**
  * @brief switches the styles, text, and amount of rotation each time the theme
@@ -40,7 +57,6 @@ function toggleTheme() {
     const currRotation = parseInt(getComputedStyle(sunMoonContainer).getPropertyValue('--rotation'));
     sunMoonContainer.style.setProperty('--rotation', currRotation + 180);
     const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
-    const index = -1 * currentlyDark / 100;     //convert state to index (0 if switching to dark, -1.8 if switching to light)
 
     let delay = getComputedStyle(document.body).getPropertyValue('--animiation-transition');
     delay = delay.replace(/\D/g,'');     //convert to ms int
@@ -55,7 +71,11 @@ function toggleTheme() {
     
     //switch button text when faded (div 2 because that's when opacity 0 (at 50%, halfway through transition))
     setTimeout(() => {
-         toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
+        if (currentlyDark) {
+            setLightTheme();
+        } else {
+            setDarkTheme();
+        }
     }, delay/2);    
 
     document.body.classList.toggle("dark");
