@@ -29,6 +29,7 @@ const BUTTON_TEXT = Array(DARK_BUTTON_TEXT, LIGHT_BUTTON_TEXT);
 const sunMoonContainer = document.getElementsByClassName("sun-moon-container")[0];
 const toggleBtn = document.getElementsByClassName("theme-toggle-button")[0];
 const toggleBtnText = document.getElementById("toggle-button-text");
+const toggleIcon = document.getElementById("toggle");
 
 toggleBtn.addEventListener("click", toggleTheme);
 
@@ -52,8 +53,10 @@ function toggleTheme() {
 
 
     toggleBtnText.classList.add("fade-in-animation");
+    toggleIcon.classList.add("fade-in-animation");
     setTimeout(() => {
         toggleBtnText.classList.remove("fade-in-animation");
+        toggleIcon.classList.remove("fade-in-animation");
     }, delay);
     
     setTimeout(() => {
