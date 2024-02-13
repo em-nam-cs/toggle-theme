@@ -48,10 +48,14 @@ function toggleTheme() {
     let delay = getComputedStyle(document.body).getPropertyValue('--transition-delay');
     delay = delay.replace(/\D/g,'') * 1000 / 3;     //convert to ms int at a fraction of given delay (otherwise too slow)
 
+
     //replace text in the btn's span
     setTimeout(() => {
         toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
     }, delay);
+
+
+
 
     document.body.classList.toggle("dark");
 

@@ -107,3 +107,23 @@ body.dark {
     opacity: 0;
 }
 
+.fade-in-animation {
+    color: blue;
+    animation-name: fade-in;
+    animation-duration: var(--transition-delay);
+    opacity: 1;
+}
+
+@keyframes fade-in {
+    50% {opacity: 0;}
+}
+
+/* 
+
+.dark #light-text {
+    opacity: 0.2;
+}
+
+.dark #dark-text {
+    opacity: 1;
+} */
