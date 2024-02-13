@@ -1,3 +1,13 @@
+/**
+@brief basic single page that can toggle and smoothly transition between a 
+    light mode and a dark mode upon clicking the toggle button
+    - Switches the text on the button
+    - Rotates the icons in clockwise circle
+    - Changes CSS styling to add or remove the dark mode styles
+
+@author Em Nam
+@date 02/12/2024
+ */
 
 const LIGHT_BUTTON_TEXT = "Swap to Dark Theme";
 const DARK_BUTTON_TEXT = "Swap to Light Theme";
@@ -20,7 +30,7 @@ function toggleTheme() {
     const index = -1 * currentlyDark / 100;     //convert state to index (0 if switching to dark, -1.8 if switching to light)
 
     let delay = getComputedStyle(document.body).getPropertyValue('--transition-delay');
-    delay = delay.replace(/\D/g,'') * 1000 / 3;
+    delay = delay.replace(/\D/g,'') * 1000 / 3;     //convert to ms int at a fraction of given delay (otherwise too slow)
 
     for (i = 0; i < toggleBtn.children.length; i++) {
         const currElement = toggleBtn.children[i]
