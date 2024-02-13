@@ -8,6 +8,7 @@ body {
     --button-text-color: white;
     --text-color: black;
     --transition-delay: 2s;
+    --animiation-transition: 4s;
 
     background-color: var(--background-color);
     fill: var(--accent-color);
@@ -108,9 +109,8 @@ body.dark {
 }
 
 .fade-in-animation {
-    color: blue;
     animation-name: fade-in;
-    animation-duration: var(--transition-delay);
+    animation-duration: var(--animiation-transition);
     opacity: 1;
 }
 

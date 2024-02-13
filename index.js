@@ -49,7 +49,15 @@ function toggleTheme() {
     delay = delay.replace(/\D/g,'') * 1000 / 3;     //convert to ms int at a fraction of given delay (otherwise too slow)
 
 
-    //replace text in the btn's span
+    toggleBtnText.classList.add("fade-in-animation");
+    setTimeout(() => {
+        toggleBtnText.classList.remove("fade-in-animation");
+        
+    }, delay);
+    
+
+
+    // //replace text in the btn's span
     setTimeout(() => {
         toggleBtnText.innerHTML = BUTTON_TEXT.at(index);
     }, delay);
