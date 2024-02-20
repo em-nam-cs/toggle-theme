@@ -5,20 +5,14 @@
     - Rotates the icons in clockwise circle
     - Changes CSS styling to add or remove the dark mode styles
 
-    Assuming that starting in light mode
-
-    Note: if click faster than the transitions, animations get jumpy due to setTimeouts()
-        and toggle button still trying to process previous event delay
+    - Stores theme in local storage so refreshing keeps saved theme
 
 @author Em Nam
-@date 02/13/2024
+@date 02/20/2024
  */
 
  /**
-  * 
-  todo:
-  - have button text based on a diction/key-value pairs so better indexing
-  - 
+  * issue with rotation if it does not start on the light mode
   */
 
 const BUTTON_TEXT = {
@@ -39,12 +33,11 @@ let darkTheme = localStorage.getItem("darkTheme");
 //Set toggle button text upon loading
 document.addEventListener("DOMContentLoaded", () => {
     console.log(`storage before init: ${localStorage.getItem("darkTheme")}`);
-    setLightTheme();
-    // if (darkTheme === "enabled") {
-    //     setDarkTheme();
-    // } else {
-    //     setLightTheme();
-    // }
+    if (darkTheme === "enabled") {
+        setDarkTheme(0);
+    } else {
+        setLightTheme(0);
+    }
 })
 
 
@@ -83,7 +76,7 @@ function toggleTheme() {
     sunMoonContainer.style.setProperty('--rotation', currRotation + 180);
     // const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
 
-    currentTheme = localStorage.getItem("darkTheme");
+    console.log(`rotation: ${currRotation}`);
 
     let delay = getComputedStyle(document.body).getPropertyValue('--animiation-transition');
     delay = delay.replace(/\D/g,'');     //convert to ms int
@@ -98,7 +91,7 @@ function toggleTheme() {
     
     //switch button text when faded (div 2 because that's when opacity 0 (at 50%, halfway through transition))
     console.log(`storage before cond: ${localStorage.getItem("darkTheme")}`);
-    let darkTheme = localStorage.getItem("darkTheme");
+    darkTheme = localStorage.getItem("darkTheme");
     if (darkTheme === "enabled") {  //make this so it makes better sense and matches start up if()
         setLightTheme(delay);
     } else {

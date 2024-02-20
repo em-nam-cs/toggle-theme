@@ -7,7 +7,7 @@ body {
     --accent-color: rgb(255, 174, 66);
     --button-text-color: white;
     --text-color: black;
-    --transition-delay: 1000ms;
+    --transition-delay: 1500ms;
     --animiation-transition: 1500ms;
 
     background-color: var(--background-color);
@@ -79,6 +79,10 @@ body.dark {
 
     display: flex;
     justify-content: center;
+}
+
+.dark .sun-moon-container {
+    --rotation: 180;
 }
 
 #sun, #moon {
