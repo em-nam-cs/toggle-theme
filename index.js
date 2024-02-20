@@ -18,6 +18,7 @@
   * 
   todo:
   - have button text based on a diction/key-value pairs so better indexing
+  - 
   */
 
 const BUTTON_TEXT = {
@@ -33,18 +34,42 @@ const toggleIcon = document.getElementById("toggle");
 
 toggleBtn.addEventListener("click", toggleTheme);
 
+let darkTheme = localStorage.getItem("darkTheme");
+
 //Set toggle button text upon loading
 document.addEventListener("DOMContentLoaded", () => {
+    console.log(`storage before init: ${localStorage.getItem("darkTheme")}`);
     setLightTheme();
+    // if (darkTheme === "enabled") {
+    //     setDarkTheme();
+    // } else {
+    //     setLightTheme();
+    // }
 })
 
 
-function setLightTheme() {
-    toggleBtnText.innerHTML = BUTTON_TEXT["LIGHT_TEXT"];
+function setLightTheme(delay) {
+    console.log("SEt light");
+    
+    console.log(`storage before set L: ${localStorage.getItem("darkTheme")}`);
+    setTimeout(() => {
+        toggleBtnText.innerHTML = BUTTON_TEXT["LIGHT_TEXT"];
+        localStorage.setItem("darkTheme", null);
+        document.body.classList.remove("dark"); 
+        console.log(`storage after set L: ${localStorage.getItem("darkTheme")}`);
+    }, delay/2);    
+
 }
 
-function setDarkTheme() {
-    toggleBtnText.innerHTML = BUTTON_TEXT["DARK_TEXT"];
+function setDarkTheme(delay) {
+    console.log("SEt dark");
+    console.log(`storage before set D: ${localStorage.getItem("darkTheme")}`);
+    setTimeout(() => {
+        toggleBtnText.innerHTML = BUTTON_TEXT["DARK_TEXT"];
+        localStorage.setItem("darkTheme", "enabled");
+        document.body.classList.add("dark"); 
+        console.log(`storage before set D: ${localStorage.getItem("darkTheme")}`);
+    }, delay/2);    
 }
 
 
@@ -56,7 +81,9 @@ function toggleTheme() {
 
     const currRotation = parseInt(getComputedStyle(sunMoonContainer).getPropertyValue('--rotation'));
     sunMoonContainer.style.setProperty('--rotation', currRotation + 180);
-    const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
+    // const currentlyDark = currRotation % FULL_REVOLUTION;  //0 if full rev (currently light), 180 if dark
+
+    currentTheme = localStorage.getItem("darkTheme");
 
     let delay = getComputedStyle(document.body).getPropertyValue('--animiation-transition');
     delay = delay.replace(/\D/g,'');     //convert to ms int
@@ -70,14 +97,16 @@ function toggleTheme() {
     }, delay);
     
     //switch button text when faded (div 2 because that's when opacity 0 (at 50%, halfway through transition))
-    setTimeout(() => {
-        if (currentlyDark) {
-            setLightTheme();
-        } else {
-            setDarkTheme();
-        }
-    }, delay/2);    
+    console.log(`storage before cond: ${localStorage.getItem("darkTheme")}`);
+    let darkTheme = localStorage.getItem("darkTheme");
+    if (darkTheme === "enabled") {  //make this so it makes better sense and matches start up if()
+        setLightTheme(delay);
+    } else {
+        setDarkTheme(delay);
+    } 
 
-    document.body.classList.toggle("dark");
+    // document.body.classList.toggle("dark"); 
+    //I want this outsid eof the timeout, but I also want it in the helper function so I can
+    //set the mode on init and appropriate styles
 
 }
