@@ -81,6 +81,7 @@ body.dark {
     justify-content: center;
 }
 
+/* need this to set the rotation if starts as the dark theme */
 .dark .sun-moon-container {
     --rotation: 180;
 }
