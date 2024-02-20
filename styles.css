@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -9,19 +11,20 @@ body {
     --text-color: black;
     --transition-delay: 1500ms;
     --animiation-transition: 1500ms;
+    --nav-bar-gap: 5px;
+    --nav-bar-padding: 5px;
 
     background-color: var(--background-color);
     fill: var(--accent-color);
     color: var(--text-color);
     transition: var(--transition-delay);
 
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    height: 100vh;  /* makes the centering be entire viewheight, not height of elements (which pushes centering to top because elements don't take entire screen) */
+    height: 100vh; /* makes the centering be entire viewheight, not height of elements (which pushes centering to top because elements don't take entire screen) */
     overflow: hidden; /*prevent scroll bar */
 }
 
@@ -71,10 +74,12 @@ body.dark {
 
     pointer-events: none; /*prevents container from blocking btn*/
     position: absolute;
-    top: 0;
+    top: calc(var(--nav-bar-gap) + var(--nav-bar-padding));
     height: 200vmin; /*creates circular path based on smallest screen dim */
 
-    transform: rotate(calc(var(--rotation) * 1deg)); /*include units in css so no need for str in js*/
+    transform: rotate(
+        calc(var(--rotation) * 1deg)
+    ); /*include units in css so no need for str in js*/
     transition: transform, var(--transition-delay);
 
     display: flex;
@@ -86,7 +91,8 @@ body.dark {
     --rotation: 180;
 }
 
-#sun, #moon {
+#sun,
+#moon {
     position: absolute;
     transition: opacity, fill, var(--transition-delay);
     fill: var(--accent-color);
@@ -102,7 +108,7 @@ body.dark {
 #moon {
     bottom: 5%;
     opacity: 0;
-    transform: rotate(180deg);  /*keeps moon right side up*/
+    transform: rotate(180deg); /*keeps moon right side up*/
 }
 
 .dark #moon {
@@ -120,15 +126,24 @@ body.dark {
 }
 
 @keyframes fade-in {
-    50% {opacity: 0;}
+    50% {
+        opacity: 0;
+    }
 }
 
-/* 
-
-.dark #light-text {
-    opacity: 0.2;
+.nav-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    /* justify-items: center; */
+    position: absolute;
+    top: var(--nav-bar-gap);
 }
 
-.dark #dark-text {
-    opacity: 1;
-} */
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--nav-bar-padding);
+    border: black 2px solid;
+}
